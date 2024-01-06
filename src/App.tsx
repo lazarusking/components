@@ -7,6 +7,7 @@ import {
   Twitter,
 } from "react-feather";
 import "./App.css";
+import profileImg from "./assets/profile.png";
 
 const colors = [
   "bg-violet-500",
@@ -15,7 +16,7 @@ const colors = [
   "bg-purple-600",
 ];
 const profile = {
-  src: "/images/profile.png",
+  src: profileImg,
   alt: "Cartoonized version of myself",
 };
 type SocialType = {
@@ -64,7 +65,7 @@ export default function App() {
                   <img
                     aria-label="profile image"
                     className={"rounded-full size-[114px]"}
-                    src={profile.src}
+                    src={profileImg}
                     alt={profile.alt}
                   />
                   <h1 className="text-xl font-bold">King Lazarus</h1>
