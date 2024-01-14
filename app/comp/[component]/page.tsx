@@ -7,7 +7,7 @@ export async function generateStaticParams() {
   const componentDirectory = join(process.cwd(), "src/components");
   const mdxFiles = await promises.readdir(componentDirectory);
   const components = mdxFiles.map((filename) => {
-    const filepath = join(componentDirectory, filename);
+    // const filepath = join(componentDirectory, filename);
     // const fileContents = await promises.readFile(filepath, "utf8");
     return filename;
   });
