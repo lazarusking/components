@@ -13,7 +13,7 @@ export default function Home() {
     <main className="flex min-h-[80dvh] flex-col items-center justify-center">
       <section className="px-4 py-7 flex flex-col items-center justify-center">
         <div className="max-w-xl space-y-2 mx-auto text-center lg:text-lg">
-          <h1 className="text-2xl sm:text-6xl font-bold text-slate-900">
+          <h1 className="text-4xl sm:text-6xl font-bold text-slate-900">
             Components
           </h1>
           <p className="text-gray-600">
