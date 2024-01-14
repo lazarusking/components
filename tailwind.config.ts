@@ -8,6 +8,15 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    backgroundColor: ({ theme }) => ({
+      ...theme("colors"),
+      primary: "#3490dc",
+      cream: "#fffaf0",
+      secondary: "#ffed4a",
+      danger: "#e3342f",
+      "dark-0": "#23283e",
+      "dark-1": "#bdbddd",
+    }),
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
