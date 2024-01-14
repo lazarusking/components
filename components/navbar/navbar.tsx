@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Folder, Grid, X } from "react-feather";
+import { useCallback, useRef, useState } from "react";
+import { X } from "react-feather";
 import profilePic from "/public/next.svg";
 
 // Profile Dropdown
@@ -66,11 +66,11 @@ export default function Navbar() {
 
   // Replace javascript:void(0) path with your path
   const navigation = [{ title: "Components", path: "/comp" }];
-  const paths = [
-    { name: "Dashboard", href: "" },
-    { name: "Settings", href: "" },
-    { name: "Log out", href: "" },
-  ];
+  // const paths = [
+  //   { name: "Dashboard", href: "" },
+  //   { name: "Settings", href: "" },
+  //   { name: "Log out", href: "" },
+  // ];
   return (
     <nav className="bg-white border-b">
       <div className="flex items-center gap-4 py-3 px-4 max-w-screen-xl mx-auto md:px-6">
@@ -228,6 +228,7 @@ const DropdownLinks = ({ title, href, id }: Links) => {
   );
 };
 
+// eslint-disable-next-line no-unused-vars
 function DropdownProfile({
   username,
   show,
