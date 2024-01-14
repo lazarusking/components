@@ -25,7 +25,7 @@ async function getComponent(params: string) {
   try {
     const componentDirectory = join(process.cwd(), "src/components");
     const componentPath = join(componentDirectory, `${params}.mdx`);
-    const mdxFiles = await promises.readdir(componentDirectory);
+    // const mdxFiles = await promises.readdir(componentDirectory);
     const componentFile = await promises.readFile(componentPath, "utf-8");
     const { data, content } = matter(componentFile);
     return { data, content };
