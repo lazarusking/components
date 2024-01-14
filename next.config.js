@@ -4,8 +4,9 @@ const withMDX = require("@next/mdx")();
 const nextConfig = {
   output: "export",
   // Configure `pageExtensions` to include MDX files
-  basePath: this.env == "production" ? "/components" : "",
-  assetPrefix: this.env == "production" ? "/components" : undefined,
+  basePath: process.env.NODE_ENV === "production" ? "/components" : "",
+  assetPrefix:
+    process.env.NODE_ENV === "production" ? "/components" : undefined,
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   // Optionally, add any other Next.js config below
 };
