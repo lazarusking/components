@@ -1,0 +1,129 @@
+---
+title: Cards
+emoji: 🥁
+category: Cards
+container: p-6 flex flex-wrap justify-center gap-4
+seo:
+  title: Card Components
+  description: Card components created with Tailwind CSS
+---
+# Welcome to my MDX page!
+ 
+This is some **bold** and _italics_ text.
+ 
+This is a list in markdown:
+ 
+- One
+- Two
+- Three
+ 
+Checkout my React component:
+ import React from 'react'
+<CardGrid>
+  <Card
+    title="React"
+    color="#12c6e4"
+    href="https://frontarm.com/demoboard/?id=bff12110-d1c6-46d9-b384-706b84bd9dcb"
+  />
+  <Card
+    title="Vue.js"
+    color="#4fc08d"
+    href="https://frontarm.com/demoboard/?id=ea41c975-72b2-4c7a-a3f9-e29eb9acd6d2"
+  />
+  <Card
+    title="Vanilla Javascript"
+    color="#f2dc3e"
+    textColor="black"
+    href="https://frontarm.com/demoboard/?id=344821fa-577d-42ed-939c-8d6468d7685c"
+  />
+  <Card
+    title="React with Hooks"
+    color="#dd3c6f"
+    href="https://frontarm.com/demoboard/?id=baab500e-ba99-4709-abff-aab99af2043b"
+  />
+</CardGrid>
+
+[Read the introduction &raquo](https://frontarm.com/james-k-nelson/announcing-demoboard/)
+
+
+The simplest editor alive.
+--------------------------
+
+Try pasting this code into the editor on the left:
+
+```markdown
+import Button from '@material-ui/core/Button'
+
+# Hello World
+
+<p>
+<Button variant='outlined' color='primary'>
+I'm a material button!
+</Button>
+</p>
+
+Now hit ctrl-z/command-z to undo your change.
+```
+
+Thanks to [MDX](https://mdxjs.com), you can intermix Markdown and JSX. Thanks to [UNPKG](https://unpkg.com/#/) and a little magic, you can import *any* package from NPM. And all with an instant preview as you type.
+
+
+You can...
+----------
+
+- Import Markdown files as React components
+- Import React components into Markdown files
+- Add a `README.md` file that will be displayed on load
+- Add an `index.html` file to customize your HTML
+- Add a `markdown.css` file to edit the default markdown styles
+- Add styles with `.css` and `.scss` files
+- Specify versions for NPM imports with `@`
+- Login to save new versions of a demo
+- Export sources to a zip file
+
+
+> This is magic.
+
+<TwitterButton />
+
+export function Card(props) {
+  return (
+    <a
+      className='Card'
+      target='_blank'
+      href={props.href}
+      style={{
+        backgroundColor: props.color,
+        color: props.textColor || 'white',
+      }}>
+      {props.title} &raquo;
+    </a>
+  )
+}
+
+export function CardGrid(props) {
+  return (
+    <div className='CardGrid'>
+      {props.children}
+    </div>
+  )
+}
+
+export function TwitterButton(props) {
+  let encodedStatus = encodeURIComponent(
+    "This live editor looks pretty darn handy #JavaScript"
+  )
+  let encodedURL = encodeURIComponent(
+    "https://frontarm.com/demoboard"
+  )
+
+  return (
+    <a
+      href={`https://twitter.com/intent/tweet?text=${encodedStatus}&url=${encodedURL}`}
+      target="_blank"
+      className="TwitterButton">
+      <img src="https://frontarm.com/twitter-logo.svg" alt="Twitter Logo" /> Tweet About It
+    </a>
+  )
+}
+
