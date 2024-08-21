@@ -15,12 +15,14 @@
     "@types/mdx": "^2.0.10",
     "gray-matter": "^4.0.3",
     "next": "14.0.4",
+    "next-mdx-remote": "^5.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-feather": "^2.0.10"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

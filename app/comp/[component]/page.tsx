@@ -2,7 +2,11 @@ import { promises } from "fs";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import { join } from "path";
-
+import { serialize } from "next-mdx-remote/serialize";
+import { compileMDX, MDXRemote } from 'next-mdx-remote/rsc'
+import dynamic from "next/dynamic";
+import Card from "@/components/card.mdx";
+import MDXRemoteClient from "../../../components/MDXRemoteClient";
 export async function generateStaticParams() {
   const componentDirectory = join(process.cwd(), "src/components");
   const mdxFiles = await promises.readdir(componentDirectory);
@@ -28,7 +32,8 @@ async function getComponent(params: string) {
     // const mdxFiles = await promises.readdir(componentDirectory);
     const componentFile = await promises.readFile(componentPath, "utf-8");
     const { data, content } = matter(componentFile);
-    return { data, content };
+    const mdxSource = await serialize(content);
+    return { componentFile, data, content, mdxSource };
   } catch (error) {
     notFound();
   }
@@ -38,8 +43,13 @@ export default async function Page({
 }: {
   params: { component: string };
 }) {
-  const { data } = await getComponent(params.component);
+  const { data, content, mdxSource, componentFile } = await getComponent(params.component);
   console.log(data);
+  const Component = dynamic(() => import(`../../../src/components/${params.component}.mdx`));
+  const { content: CE, frontmatter, } = await compileMDX<{ title: string }>({
+    source: componentFile,
+    options: { parseFrontmatter: true },
+  });
 
   return (
     <>
@@ -61,6 +71,39 @@ export default async function Page({
         </div>
       </section>
       <h1>{params.component}</h1>
+      <MDXRemote
+        {...mdxSource}
+        source={mdxSource}
+        components={{
+          // h1: (props) => <h1 style={{ color: "tomato" }} {...props} />,
+          // h2: (props) => <h2 style={{ color: "rebeccapurple" }} {...props} />,
+          // p: (props) => <p style={{ color: "blue" }} {...props} />,
+          // a: (props) => <a style={{ color: "blue" }} {...props} />,
+          // Image,
+          // TestComponent,
+        }}
+
+      />
+      <MDXRemote {...mdxSource} source={componentFile} components={{
+        Component, code(props) {
+          return <pre style={{ color: 'goldenrod' }}>
+            <code {...props} />
+          </pre>
+        },
+      }} />
+      {/* <>{CE}</> */}
+      <article className="prose prose-invert max-w-7xl">
+        <MDXRemoteClient
+          mdxSource={{ ...mdxSource }}
+          components={{
+            Component,
+            code(props) {
+              return <code style={{ color: 'goldenrod' }} {...props} />
+            },
+          }}
+        />
+      </article>
+      {/* <Component /> */}
     </>
   );
 }
